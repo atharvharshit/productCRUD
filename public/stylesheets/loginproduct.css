@@ -1,0 +1,35 @@
+.mainBox{
+    background-color:#bdc3c7;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to bottom,aqua,#8e44ad);
+}
+.headingBox{
+    background-color: #fff;
+    width: 100%;
+    height: 10%;
+}
+.headingText{
+    color: black;
+    font-size: 23px;
+    font-weight: bolder;
+    letter-spacing: 1px;
+}
+
+.centerAlign{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginBox{
+    background-color: white;
+    width: 27%;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    border: 4px solid black;
+
+}

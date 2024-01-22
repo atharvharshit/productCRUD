@@ -1,0 +1,389 @@
+<html>
+    <head>
+        <link href="/stylesheets/product.css" rel="stylesheet" />
+   <!--     <link rel="stylesheet" href="sweetalert2.min.css"> -->
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/javascripts/project.js"></script>
+  <!--     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+           <script src="sweetalert2.all.min.js"></script> -->
+    </head>
+    <body>
+<!--
+      <% var db=['Fri','Sun']
+    var weeks=['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+
+    weeks.map((item)=>{
+      if(db.includes(item)){%> 
+        <label>
+          <input type="checkbox" checked="checked" value="<%=item %>" />
+          <span><%=item %></span>
+        </label>
+        
+        <%}else{%>
+          <label>
+            <input type="checkbox"  value="<%=item %>" />
+            <span><%=item %></span>
+          </label>
+          
+          
+          <%}
+    })
+
+%>
+  -->
+
+
+
+        <% if(status==false){%>
+            <h2><%=data %></h2>
+        <%}
+        else
+        {%>
+        <div class="tableContainer">
+            <div class="tableBox">
+            <div class="headingBox">
+                <div class="headingText">List Of Products
+                </div>    
+                </div>       
+        <table class="striped">
+            <thead>
+            <tr>
+                <th>Product Id</th>
+                <th>Category</th>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Status</th>
+                <th>Picture</th>
+                <th>Update</th>
+            </tr>
+            </thead>
+          <% data.map((item)=>{%>
+            <tbody>
+            <tr>
+                <td><%=item.productid %></td>
+                <td><%=item.categoryname %><br>
+                    <%=item.subcategoryname %>
+                </td>
+                <td><%=item.productname %><br>
+                    <%=item.brandname %>
+                </td>
+                <td><%=item.description %></td>
+                <% if(item.offerprice>0){%>
+                <td><div style="color: crimson; font-weight: bolder;"><s><%=item.price %><br></s></div>
+                    <div style="color: aquamarine; font-weight: bolder;"><%=item.offerprice %><br></div> <%}
+                else{%> 
+                    <div style="color: aquamarine; font-weight: bolder;"><%=item.price %></div>    
+                    <%} %>
+                    Stock:<%=item.stock %>
+                </td>
+                <td><%=item.ratings %></td>
+                <td><%=item.status %></td>
+               <td><button type="button" class="btnpicture" products="<%=JSON.stringify(item) %>"> 
+                <!--btn class deni hogi bcause jis btn p click krenge uski attr show honge i.e all details-->
+                
+                <img src='/images/<%=item.picture %>' style="border-radius: 20px; width: 60px;">
+                </button></td>
+                <td>
+                  <button class="btnedit btn waves-effect waves-light" type="button" products="<%=JSON.stringify(item) %>">Edit
+                    <i class="material-icons right">edit</i>
+                  </button>
+                        
+                </td>
+            </tr>
+            </tbody>
+            
+            <%}) %> 
+           
+        </table>
+ <!--Dialog Products--> 
+        
+ 
+
+ <!-- Modal Structure -->
+ <div id="product" class="modal" style="width: 70%;overflow-y: hidden;max-height: fit-content;">
+   <div class="modal-content" style="width: 100%;">
+        <div class="dialogeContainer">
+           <div class="dialogeBox">
+           <div class="headingBox">
+            <div class="headingText">Update/Delete Products</div>
+           </div>         
+         
+            
+            <input type="hidden" id="productid">
+
+             <div class="row">
+              <div class="input-field col s4">
+                <i class="material-icons prefix">next_week</i>
+                <select required name="categoryid" id="categoryid">
+                  <option value="" disabled selected>Choose your option</option>
+                 
+                </select>
+                <label>Categories</label>
+              </div>
+              <div class="input-field col s4">
+                <i class="material-icons prefix">grid_on</i>
+                <select required name="subcategoryid" id="subcategoryid">
+                  <option value="" disabled selected>Choose your option</option>
+                 
+                </select>
+                <label>Subcategories</label>
+              </div>
+              <div class="input-field col s4">
+                <i class="material-icons prefix">new_releases</i>
+                <select required name="brandid" id="brandid">
+                  <option value="" disabled selected>Choose your option</option>
+                 
+                </select>
+                <label>Brands</label>
+              </div>
+             </div>
+             <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">shopping_cart</i>
+                <input required id="productname" name="productname" type="text" class="validate">
+                <label for="productname">Product Name:</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">description</i>
+                <input required id="description" name="description" type="text" class="validate">
+                <label for="description">Description:</label>
+              </div>
+             </div>
+             <div class="row">
+              <div class="input-field col s4">
+                <i class="material-icons prefix">attach_money</i>
+                <input required id="price" name="price" type="text" class="validate">
+                <label for="price">Price:</label>
+              </div>
+              <div class="input-field col s4">
+                <i class="material-icons prefix">money_off</i>
+                <input required id="offerprice" name="offerprice" type="text" class="validate">
+                <label for="offerprice">Offer Price:</label>
+              </div>
+              <div class="input-field col s4">
+                <i class="material-icons prefix">add_shopping_cart</i>
+                <input required id="stock" name="stock" type="text" class="validate">
+                <label for="price">Stock:</label>
+              </div>
+            </div>                
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">stars</i>
+                <input required id="ratings" name="ratings" type="text" class="validate">
+                <label for="ratings">Ratings:</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">edit_location</i>
+                <select required id="status" name="status">
+                  <option value="" disabled selected>Choose your option</option>
+                  <option value="Continue">Continue</option>
+                  <option value="Discontinue">Discontinue</option>
+                </select>
+                <label>Status</label>
+              </div>
+            </div> 
+            <!--model k ander val button hai edit and delete-->
+           <div class="row">
+            <div class="col s6 alignCenter">
+              <button class="btn waves-effect waves-light" id="updbtn">Edit
+                <i class="material-icons right">edit</i>   
+              </button>
+            </div>
+            <div class="col s6 alignCenter">
+              <button class="btn waves-effect waves-light" id="delbtn">Delete
+                <i class="material-icons right">remove</i>
+              </button> 
+            </div>
+           </div> 
+          
+
+           </div>
+
+        </div>     
+      
+
+
+
+
+   </div>
+   
+ </div>
+<!--End Dialog-->
+<!--Image Dialog-->
+<div id="picturedialog" class="modal">
+  <div class="modal-content">
+    
+    <!--product konsa h jise edit kia ja ra h uska name top of the dialog show krne k lie, dynamically hmne ek id li h jisme hum name ko jqury k through show krvayenge div tag m-->
+   <div id="title" style="font-size: 24px;font-weight:bold;color:blue"></div>
+   <div><img id="ppicture"></div>  <!--div lagne se image ek line neeche ayegi islie lgya h img p-->
+   
+   <div><strong>Select picture you want to upload</strong></div>
+   <div class="row">            <!--image ko upload krne ka ek hi treeka h post k through-->
+    <div class="col s6">        
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>File</span>
+          <input type="file" id="picture"> <!--picture ko upload krenge tb qury m picture ki id ki jrurat padegi yha se hm $('#picture'),val() se bhj denge server p-->
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
+    </div>
+    <div class="col s6">         <!--because y dialog hai to yha pr form action kam nai krta, vo sirf web browser p kaam kreta h   +mane y is lie bataya kyuki submit btn m formaction k through ham router k action pr kaam kr sakte hai jaisa hmne productinterface m kia h-->
+      <button class="btn waves-effect waves-light" type="button" id="uploadpicture">Upload
+        <i class="material-icons right">send</i>     <!--jquery k lie id de dia(btn m) h taki btn p  click krte hi server tak ajax k through data bhj paye-->
+      </button>
+    </div>
+  </div>
+  </div>
+  
+</div>
+
+<!--End image dialoge-->
+        </div>
+        </div>
+    <%} %>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script>
+            $(document).ready(function(){
+              $('.modal').modal();
+              $('.btnedit').click(function(){
+                
+                $('#product').modal('open')
+                var item=JSON.parse($(this).attr('products'))
+                // jis edit button p click kia us button p jo item hai uski categoryid and all things aa gai item variable ma
+                //$('#pn').html(item.subcategoryid)
+               // alert(item.categoryid)
+               $('#categoryid').val(item.categoryid)
+              // $('#subcategoryid').empty()
+             //  $('#subcategoryid').append($('<option>').text(item.subcategoryname).val(item.subcategoryid));
+             
+              // $('#subcategoryid').empty()  choose subcategories jo ara hai bo productinterface vale form se ara hai aur uske badd subcname append hora ha islie use empty kro then append krdijie
+             
+              // $('#subcategoryid').append($('<option>').text(item.subcategoryname).val(item.subcategoryid))
+               
+   //            $('#subcategoryid').append($('<option>').text(item.subcategoryname).val(item.subcategoryid));
+   //            $('#subcategoryid').val(item.subcategoryid)
+   
+   //            $('#brandid').append($('<option>').text(item.brandname).val(item.brandid))
+   //            $('#brandid').val(item.brandid)
+
+ //fillsubcategory    y on change vala nai h only y particular category k hisab se sari subcategories ko fill kregA
+        fillSubcategory(item.categoryid,item.subcategoryid)   //item. jha laga vha samj jna ki edit btn s dabaye mile h
+       
+  
+/// fillsubcategory End ////
+
+/// fill brands ////
+
+    fillBrand(item.categoryid,item.brandid)   // is se jis btn p click kkia hai edit k lie uski brandname selected ayega aur sabhi brands bhi show hongi($.getJSON ki vjah se)
+
+/// End  fillbrands ///
+///fill other details////
+$('#productid').val(item.productid)   //productid hidden create ki thi bc yha ab uski need rhegi records ko update delete krne m  productid mention krni padegi kis record ko up/del krna h y hoga on the basis of productid
+$('#productname').val(item.productname)  // item k ander productid already rhegi jis btn p click kia uske hisab se
+$('#description').val(item.description)
+$('#price').val(item.price)
+$('#offerprice').val(item.offerprice)
+$('#stock').val(item.stock)
+$('#ratings').val(item.ratings)
+$('#status').val(item.status)
+         $('#categoryid').formSelect();
+         $('#status').formSelect();
+   //            $('#subcategoryid').formSelect();
+   //           $('#brandid').formSelect();
+   M.updateTextFields();     //textfields update hoke ayenge label k sath m merge nai honge is se
+   })
+   $('#updbtn').click(function(){
+   $.getJSON("/product/editproductdata",{categoryid:$('#categoryid').val(),subcategoryid:$('#subcategoryid').val(),brandid:$('#brandid').val(),productname:$('#productname').val(),price:$('#price').val(),offerprice:$('#offerprice').val(),ratings:$('#ratings').val(),description:$('#description').val(),stock:$('#stock').val(),status:$('#status').val(),productid:$('#productid').val()},function(data){
+   // Swal.fire({
+  //   icon: 'success',            comment:yha pr hum record update kr rhe hai ,to jo hum update kr rhe hai vo values hum server pr bhejenge with the help of json(ie.$.getjson) aur y values hume tab bhejni h jab hum updbtn p click krenge aur json m key specify ki aur id k through jquery se data set kr dia h
+  //    title: 'Success...',       comment:y record localserver p ja raha h jiska humne path de dia with controller and action /product/editproductdata -yha jyega y data json k through
+  //    text: data.message            $.getJSON m jo function(data) hai to data k ander server se data ata hai jo ki humne json bna k bheja hua h like humne status and message bheja h chk krlo product.js m
+    
+ //  })
+ alert(data.message)      //record updte hue k nai y messaage bta dega alert m y message humne server se bheja h
+  
+    window.location.reload('/product/display_all_products')
+  
+  })           
+
+
+
+        })
+
+  $('#delbtn').click(function(){     
+  $.getJSON('/product/deleteproductdata',{productid:$('#productid').val()},function(data){
+    alert(data.message)
+    window.location.reload('/product/display_all_products')
+
+  })  
+})  //similar h y bhi update k comment padlo smj m ajayega  
+   
+$('.btnpicture').click(function(){     //btn picture hai dialog kholne k lie
+  $('#picturedialog').modal('open')
+  var item=JSON.parse($(this).attr('products'))
+  $('#productid').val(item.productid) //productid  n dene ki vjah se pic update nai ho rai thi null value ja rai thi usme
+  $('#title').html(`Edit Product ${item.productname}`)
+  $('#ppicture').attr('src',`/images/${item.picture}`)  // thats how to set image src in jquery
+})
+//ab hme picture update krni h data server p bhejna hai update btn dabane k badd $.ajax k through
+$('#uploadpicture').click(function(){
+ 
+ //imp- yha pr getJSON kaam nai krega because yha se hme abki baar data(productid) aur picture dono bhjna h server pr..
+ var formData=new FormData(); // y formdata use krna hai jab hme picture and data bhjna ho ,y formdata javascript ka class hai
+ formData.append("productid",$('#productid').val())  //productid bheji
+ var files=$('#picture')[0].files;   //picture bheji  ,[0] lagaya kyuki pictures m multiple files bhi choose ho jati hai to zero matlab picture k ander jo phli vali file hai vo files m chali jae 
+
+//check file selected or not            jo bhi data bhejna chahte hai vo formdata m set kerke bhejenge
+if(files.length>0){      //yaaar jab koi file select ho jyegi to uski kuch length to hogi na isi lie lgaya hai y condition.....
+formData.append('picture',files[0])  // kis name se leke jana hai pic ko hm picture naam se le gye
+
+////////////ajax////////////////////
+
+ $.ajax({
+  url:'http://localhost:3000/product/updateproductpicture',
+  type: 'POST',
+  data: formData,
+  
+  processData:false,
+  contentType:false,
+
+  success:function(response){
+    alert(response.status)        //server se data(true/false .ie specified there) and message ayega response k pass, mtlab pura jo json h vo server se response m aa jyega....
+    // alert(response.message)
+  window.location.reload('/product/display_all_products')
+  }
+
+ })
+
+
+////////////////////////////////////
+
+}else{
+  alert("Please select a file")
+}
+
+})
+
+});
+
+
+
+    </script>
+
+
+
+
+</html>

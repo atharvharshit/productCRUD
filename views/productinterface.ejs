@@ -1,0 +1,157 @@
+<html>
+    <head>
+    <link href="/stylesheets/product.css" rel="stylesheet" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascripts/project.js"></script>
+    <script>
+       $(document).ready(function(){
+       $('select').formSelect();
+     });
+    </script>     
+    </head>
+    <body>
+        <form action="/product/submitproduct" method="post" enctype="multipart/form-data">
+          <div class="mainContainer">
+             <div class="box">
+             <div class="headingBox">
+              <div class="headingText">Product Interface</div>
+             </div>         
+         <!-- 
+              <div class="row">
+              <div class="col s12">
+                <label>
+                  <input type="checkbox" name="color" value="Red" />
+                  <span>Red</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="color" value="Green" />
+                  <span>Green</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="color" value="Yellow" />
+                  <span >Yellow</span>
+                </label>
+              </div>
+            </div>
+
+          -->
+               <div class="row">
+                <div class="input-field col s4">
+                  <i class="material-icons prefix">next_week</i>
+                  <select required name="categoryid" id="categoryid">
+                    <option value="" disabled selected>Choose your option</option>
+                   
+                  </select>
+                  <label>Categories</label>
+                </div>
+                <div class="input-field col s4">
+                  <i class="material-icons prefix">grid_on</i>
+                  <select required name="subcategoryid" id="subcategoryid">
+                    <option value="" disabled selected>Choose your option</option>
+                   
+                  </select>
+                  <label>Subcategories</label>
+                </div>
+                <div class="input-field col s4">
+                  <i class="material-icons prefix">new_releases</i>
+                  <select required name="brandid" id="brandid">
+                    <option value="" disabled selected>Choose your option</option>
+                   
+                  </select>
+                  <label>Brands</label>
+                </div>
+               </div>
+               <div class="row">
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">shopping_cart</i>
+                  <input required id="productname" name="productname" type="text" class="validate">
+                  <label for="productname">Product Name:</label>
+                </div>
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">description</i>
+                  <input required id="description" name="description" type="text" class="validate">
+                  <label for="description">Description:</label>
+                </div>
+               </div>
+               <div class="row">
+                <div class="input-field col s4">
+                  <i class="material-icons prefix">attach_money</i>
+                  <input required id="price" name="price" type="text" class="validate">
+                  <label for="price">Price:</label>
+                </div>
+                <div class="input-field col s4">
+                  <i class="material-icons prefix">money_off</i>
+                  <input required id="offerprice" name="offerprice" type="text" class="validate">
+                  <label for="offerprice">Offer Price:</label>
+                </div>
+                <div class="input-field col s4">
+                  <i class="material-icons prefix">add_shopping_cart</i>
+                  <input required id="stock" name="stock" type="text" class="validate">
+                  <label for="price">Stock:</label>
+                </div>
+              </div>                
+              <div class="row">
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">stars</i>
+                  <input required id="ratings" name="ratings" type="text" class="validate">
+                  <label for="ratings">Ratings:</label>
+                </div>
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">edit_location</i>
+                  <select required name="status">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Continue">Continue</option>
+                    <option value="Discontinue">Discontinue</option>
+                  </select>
+                  <label>Status</label>
+                </div>
+              </div> 
+              <div class="row">
+                <div class="col s12">
+                  <div class="file-field input-field">
+                    <div class="btn">
+                      <span>File</span>
+                      <input type="file" name="picture">
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text">
+                    </div>
+                  </div>
+                </div>
+              </div>
+             <div class="row">
+              <div class="col s6 alignCenter">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+              <div class="col s6 alignCenter">
+                <button class="btn waves-effect waves-light" type="reset" name="action">Reset
+                  <i class="material-icons right">refresh</i>
+                </button> 
+              </div>
+             </div> 
+             <div class="row">
+              <div class="col s12 alignCenter">
+                <h5><%=message %></h5>
+              </div>
+             </div>  
+
+             </div>
+
+          </div>     
+        </form>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      $(document).ready(function(){
+      $('select').formSelect();
+    });
+</html>

@@ -1,0 +1,125 @@
+<html>
+<head>
+  <!--Import Google Icon Font--> 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      
+  <!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link href="/stylesheets/dashboardui.css" rel="stylesheet" />
+
+
+</head>
+<body>
+<div class="mainBox">
+  <!--  <div class="boxOne">
+        <div class="row">
+            <div class="col s2 menuBox headingText centerAlign"><i class="material-icons" style="font-size: 28px;">dehaze</i>Menu-Bar
+                
+            </div>
+               
+                <nav style="height: 100%;">
+                <div class="col s10 nav-wrapper" >
+                  <a href="#" style="padding-left: 10px;font-size:23px;">Peter Kumar</a>
+                  <span class="right">
+                    <img src="/images/admin.jpg" style="width:65px;height:65px;border-radius:30px;padding: 5px;" >
+                  </span>
+                </div>
+              </nav>
+              
+            
+            </div>
+        </div>
+    -->
+    <div class="row">
+        <div class="col s2 boxTwo">
+            <div class="row">
+                <div class="col s12 centerAlign">
+                    <img src="/images/logo3.png" width="260"  >
+                </div>
+            </div>
+            <div class="centerAlign">
+
+                <img src="/images/<%=admin.picture %>" style="width:65px;height:65px;border-radius:30px;padding: 5px;" >
+            
+            </div>
+            <div style="display: flex;justify-content:center;font-size:17px;margin-bottom: 20px;">
+                
+                <%=admin.adminname %>
+            
+            </div>
+           
+            <div class="row">
+                <div class="col s12 headingBox ">
+                    <div class="headingText">
+                        <a class="waves-effect waves-light btn" style="width:240px;" href="/product/product" target="mw"><i class="small material-icons">low_priority</i>Add Products</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 headingBox ">
+                    <div class="headingText">
+                        <a class="waves-effect waves-light btn" style="width:240px;" href="/product/display_all_products" target="mw"><i class="small material-icons">payment</i>Display-Products </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 headingBox ">
+                    <div class="headingText">
+                       <a class="waves-effect waves-light btn" style="width:240px;" href="/admin/adminlogout"><i class="small material-icons">logout</i>Log-Out</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 headingBox">
+                    <div class="headingText"><i class="small material-icons">tv</i>Dashboard</div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="boxThree" style="padding: 10px;">
+            
+            <div class="row">
+                    
+                        <div class="col s3 boxSeven centerAlign" style="margin-left:65px; margin-right: 150px;width:12vw;height: 10vh;">
+                            <span class="sBox centerAlign"><i class="small material-icons" style="background-color:red; color:white;">person</i>
+                             <span style="padding:10px;font-size:26px;font-weight:bold;"><%=result[0][0].countcategory %>Category</span>
+                            </span>
+                        </div>
+                        <div class="col s3 boxSeven centerAlign" style="margin-right: 150px;width:12vw;height: 10vh;">
+                            <span class="sBox centerAlign"><i class="small material-icons" style="background-color:green; color:white;">shopping_basket</i>
+                              <span style="padding: 10px;font-size:26px;font-weight:bold;"><%=result[1][0].countproducts %>Products</span>
+                            </span>
+                        </div>
+
+                    
+                   
+                        <div class="col s3 boxSeven centerAlign" style="margin-right: 150px;width:12vw;height: 10vh;">
+                            <span class="sBox centerAlign"><i class="small material-icons" style="background-color: blueviolet; color:white;">shopping_cart</i>
+                              <span style="padding: 10px;font-size:26px;font-weight:bold;"><%=result[1][0].countstock %>Stock</span><!--result[ [00],[10],[20]  ]    ex [{json vlues k beech comma laga h aur pora json 0 index pr hai(1 ki 0 pr)} comma lag k ek aur json hota to(1ki 1 index pe hota)]-->
+                            </span>
+                        </div>
+                        <div class="col s3 boxSeven centerAlign" style="width:12vw;height: 10vh;">
+                            <span class="sBox centerAlign"><i class="small material-icons" style="background-color:purple; color:white;">shop</i>
+                              <span style="padding: 10px;font-size:26px;font-weight:bold;"><%=result[2][0].countbrands %>Brands</span>
+                            </span>
+                        </div>
+                        
+                    
+                    
+                
+            </div>
+            <div>
+                <iframe src="/product/display_all_products" frameborder="0" style="width:75vw;height:80vh;margin-left: 65px;" name="mw"></iframe>
+            </div> 
+
+
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
